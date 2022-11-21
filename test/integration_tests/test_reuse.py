@@ -63,7 +63,7 @@ class ReuseTest(unittest.TestCase):
 
     def test_query_2(self):
         select_query = """SELECT id, bbox FROM top_gun JOIN 
-                        LATERAL FastRCNNObjectDetector(data) AS Obj(bbox, conf, label) WHERE id < 200;"""
+                        LATERAL FastRCNNObjectDetector(data) AS Obj(bbox, conf, label) WHERE id < 100;"""
 
         actual_batch = execute_query_fetch_all(select_query)
         print(f"actual_batch: {actual_batch}")
@@ -71,6 +71,7 @@ class ReuseTest(unittest.TestCase):
         # assert false
         self.assertEqual(1 == 1, False)
 
+    '''
     def test_query_3(self):
         select_query = """SELECT id, bbox FROM top_gun JOIN 
                         LATERAL FastRCNNObjectDetector(data) AS Obj(bbox, conf, label) WHERE id < 300;"""
@@ -80,7 +81,7 @@ class ReuseTest(unittest.TestCase):
 
         # assert false
         self.assertEqual(1 == 1, False)
-
+    '''
 
 if __name__ == "__main__":
     unittest.main()
